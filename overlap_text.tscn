@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://m7qivxynrthm"]
+
+[ext_resource type="Script" path="res://overlap_text.gd" id="1_11orj"]
+[ext_resource type="Texture2D" uid="uid://dxbt7ri8513e0" path="res://icon.svg" id="1_vqtxt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cswjk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6c6cm"]
+size = Vector2(94, 26)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_em6kw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14dme"]
+size = Vector2(103, 26)
+
+[node name="OverlapText" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_11orj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 341.0
+offset_top = 201.0
+offset_right = 469.0
+offset_bottom = 329.0
+texture = ExtResource("1_vqtxt")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -18.5
+offset_right = 18.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_cswjk")
+text = "TextureRect
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="TextureRect/Label"]
+position = Vector2(47, 13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/Label/Area2D"]
+shape = SubResource("RectangleShape2D_6c6cm")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = 839.0
+offset_top = 206.0
+offset_right = 967.0
+offset_bottom = 334.0
+texture = ExtResource("1_vqtxt")
+
+[node name="Label" type="Label" parent="TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -18.5
+offset_right = 18.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_em6kw")
+text = "TextureRect2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="TextureRect2/Label"]
+position = Vector2(51, 13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect2/Label/Area2D"]
+shape = SubResource("RectangleShape2D_14dme")
+
+[connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]
+[connection signal="area_entered" from="TextureRect/Label/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="TextureRect/Label/Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="gui_input" from="TextureRect2" to="." method="_on_texture_rect_2_gui_input"]
+[connection signal="area_entered" from="TextureRect2/Label/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="TextureRect2/Label/Area2D" to="." method="_on_area_2d_area_exited"]
